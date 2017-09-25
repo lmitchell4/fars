@@ -16,10 +16,10 @@
 #' my_data <- fars_read(filename="accident_2013.csv.bz2")
 #' 
 fars_read <- function(filename) {
-  if(!file.exists(filename))
+  if(!file.exists(paste0("data/",filename)))
     stop("file '", filename, "' does not exist")
   data <- suppressMessages({
-    readr::read_csv(filename, progress = FALSE)
+    readr::read_csv(paste0("data/",filename), progress = FALSE)
   })
   dplyr::tbl_df(data)
 }
@@ -122,7 +122,7 @@ fars_summarize_years <- function(years) {
 #' have occurred in a specified state and year.
 #' 
 #' @param state.num A numeric constant giving the state id
-#' @param years A numeric constant giving the year in four-digit 
+#' @param year A numeric constant giving the year in four-digit 
 #' format, e.g., 2013. Can alternatively be a string, e.g., "2013".
 #' 
 #' @return This function plots a map and does not return anything.
