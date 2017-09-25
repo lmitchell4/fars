@@ -1,6 +1,6 @@
 
 
-# Farm Finder Catalog Site ![Site Logo](https://github.com/lmitchell4/farm-finder/blob/master/itemcatalog/static/images/logo.png) 
+# fars
 
 
 This is an R package for investigating data on automotive accidents from 
