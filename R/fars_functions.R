@@ -66,7 +66,7 @@ make_filename <- function(year) {
 #' warning is given and the list element for that year is NULL. This 
 #' function uses the functions \code{make_filename} and \code{fars_read}.
 #' 
-#' @importFrom dplyr mutate select
+#' @importFrom dplyr mutate_ select_
 #' @importFrom magrittr "%>%"
 #' 
 #' @examples
@@ -77,8 +77,8 @@ fars_read_years <- function(years) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>% 
-                dplyr::select(MONTH, year)
+      dplyr::mutate_(dat, year = ~year) %>% 
+                dplyr::select_(.dots = c("MONTH", "year"))
     }, error = function(e) {
       warning("invalid year: ", year)
       return(NULL)
@@ -100,8 +100,8 @@ fars_read_years <- function(years) {
 #' @return This function returns a \code{tbld_df} object showing the 
 #' number of accidents by month and year.
 #' 
-#' @importFrom dplyr bind_rows group_by summarize n
-#' @importFrom tidyr spread
+#' @importFrom dplyr bind_rows group_by_ summarize_ n
+#' @importFrom tidyr spread_
 #' @importFrom magrittr "%>%"
 #' 
 #' @examples
@@ -110,9 +110,9 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>% 
-      dplyr::group_by(year, MONTH) %>% 
-      dplyr::summarize(n = n()) %>%
-      tidyr::spread(year, n)
+      dplyr::group_by_(~year, ~MONTH) %>% 
+      dplyr::summarize_(n = n()) %>%
+      tidyr::spread_(key_col = 'year', value_col = 'n')
 }
 
 
@@ -132,7 +132,7 @@ fars_summarize_years <- function(years) {
 #' This function uses the functions \code{make_filename} and 
 #' \code{fars_read}.
 #' 
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter_
 #' @importFrom maps map
 #' @importFrom graphics points
 #' 
@@ -146,7 +146,7 @@ fars_map_state <- function(state.num, year) {
 
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
-  data.sub <- dplyr::filter(data, STATE == state.num)
+  data.sub <- dplyr::filter_(data, ~STATE == state.num)
   if(nrow(data.sub) == 0L) {
     message("no accidents to plot")
     return(invisible(NULL))
