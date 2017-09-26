@@ -16,10 +16,10 @@
 #' my_data <- fars_read(filename="accident_2013.csv.bz2")
 #' 
 fars_read <- function(filename) {
-  if(!file.exists(paste0("data/",filename)))
+  if(!file.exists(paste0("inst/extdata/",filename)))
     stop("file '", filename, "' does not exist")
   data <- suppressMessages({
-    readr::read_csv(paste0("data/",filename), progress = FALSE)
+    readr::read_csv(paste0("inst/extdata/",filename), progress = FALSE)
   })
   dplyr::tbl_df(data)
 }
