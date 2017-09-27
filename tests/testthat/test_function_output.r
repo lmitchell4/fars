@@ -17,5 +17,4 @@ test_that("fars_read_years returns correct object type", {
 
 test_that("fars_summarize_years returns correct object type", {
   expect_is(fars_summarize_years(years=2013:2015), "tbl_df")
-
 })
