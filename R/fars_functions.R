@@ -15,6 +15,7 @@
 #' @examples
 #' my_data <- fars_read(filename="accident_2013.csv.bz2")
 #' 
+#' @export
 fars_read <- function(filename) {
   if(!file.exists(paste0("inst/extdata/",filename)))
     stop("file '", filename, "' does not exist")
@@ -42,6 +43,7 @@ fars_read <- function(filename) {
 #' @examples
 #' my_file <- make_filename(year=2013)
 #' 
+#' @export
 make_filename <- function(year) {
   year <- as.integer(year)
   sprintf("accident_%d.csv.bz2", year)
@@ -72,6 +74,7 @@ make_filename <- function(year) {
 #' @examples
 #' my_list <- fars_read_years(years=2013:2015)
 #' 
+#' @export
 fars_read_years <- function(years) {
   lapply(years, function(year) {
     file <- make_filename(year)
@@ -107,6 +110,7 @@ fars_read_years <- function(years) {
 #' @examples
 #' fars_summarize_years(years=2013:2015)
 #' 
+#' @export
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
   dplyr::bind_rows(dat_list) %>% 
@@ -139,6 +143,7 @@ fars_summarize_years <- function(years) {
 #' @examples
 #' fars_map_state(state.num=1, year=2013)
 #' 
+#' @export
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
   data <- fars_read(filename)
