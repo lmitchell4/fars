@@ -8,7 +8,8 @@ make_filename(year)
 }
 \arguments{
 \item{year}{A numeric constant giving the year for which a filename 
-should be generated. Should be in four-digit format, e.g., 2013.}
+should be generated. Should be in four-digit format, e.g., 2013.
+Can alternatively be a string, e.g., "2013".}
 }
 \value{
 This function returns a string giving the filename. The string 
@@ -21,6 +22,6 @@ year. The resulting filename follows the pattern
 the function.
 }
 \examples{
-my_data <- make_filename(year=2013)
+my_file <- make_filename(year=2013)
 
 }

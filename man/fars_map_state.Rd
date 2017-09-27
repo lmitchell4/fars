@@ -9,8 +9,8 @@ fars_map_state(state.num, year)
 \arguments{
 \item{state.num}{A numeric constant giving the state id}
 
-\item{years}{A numeric constant giving the year in four-digit 
-format, e.g., 2013.}
+\item{year}{A numeric constant giving the year in four-digit 
+format, e.g., 2013. Can alternatively be a string, e.g., "2013".}
 }
 \value{
 This function plots a map and does not return anything.

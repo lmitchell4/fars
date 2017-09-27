@@ -9,7 +9,8 @@ fars_read_years(years)
 \arguments{
 \item{years}{A numeric vector of years for which data are desired.
 Can alternatively be a list of numeric values. The years should be 
-in four-digit format, e.g., 2013.}
+in four-digit format, e.g., 2013. Can alternatively be a vector of 
+strings, e.g., c("2013","2014","2015")}
 }
 \value{
 This function returns a list. Each element of the list is 

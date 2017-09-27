@@ -15,6 +15,9 @@ This function returns a \code{tbl_df} object.
 \description{
 This function reads in data from a csv file.
 }
+\note{
+An error message is printed if the file is not found.
+}
 \examples{
 my_data <- fars_read(filename="accident_2013.csv.bz2")
 
